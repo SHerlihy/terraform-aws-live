@@ -11,13 +11,14 @@ provider "aws" {
   region = "eu-west-2"
 }
 
-module "lb_1" {
-  source = "../modules/load_balancer"
-
-  http_open             = var.http_open
-  lb_security_group_ids = [aws_security_group.alb.id]
-
-}
+//module "lb_http" {
+//  source = "../modules/load_balancer"
+//
+//  http_open             = var.http_open
+//  lb_security_group_ids = [aws_security_group.alb.id]
+//  subnet_ids = [aws.aws_subnets.default.ids]
+//
+//}
 
 
 variable "http_open" {
@@ -35,51 +36,35 @@ data "aws_subnets" "default" {
   }
 }
 
-resource "aws_security_group" "http" {
-  name = "allow_http"
+module "security_group_http_ingress" {
+  source = "github.com/SHerlihy/terraform-aws-modules//security_groups/single_ingress_all_egress"
 
-  ingress {
-    description = "allow http on ${var.http_open}"
-    from_port   = var.http_open
-    to_port     = var.http_open
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  name      = "http_in_all_out"
+  open_port = var.http_open
+}
+
+module "lb_http" {
+  source = "github.com/SHerlihy/terraform-aws-modules//load_balancer"
+
+  open_port          = var.http_open
+  subnet_ids         = data.aws_subnets.default.ids
+  security_group_ids = [module.security_group_http_ingress.module_security_group_id]
 }
 
 resource "aws_launch_template" "launch_1" {
   image_id = "ami-04798a7880b63c836"
   #  image_id        = data.hcp_packer_image.ubuntu-aws-eu-west.cloud_image_id 
   instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.http.id]
+  vpc_security_group_ids = [module.security_group_http_ingress.module_security_group_id]
 
   # user_data = filebase64("./user_data.sh")
 }
 
 
-resource "aws_security_group" "alb" {
-  name = "lb_1_security_group"
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-}
-
 resource "aws_autoscaling_group" "group_1" {
   vpc_zone_identifier = data.aws_subnets.default.ids
 
-  target_group_arns = [module.lb_1.target_group_arn]
+  target_group_arns = [module.lb_http.target_group_arn]
   health_check_type = "ELB"
 
   min_size = 2
@@ -96,7 +81,3 @@ resource "aws_autoscaling_group" "group_1" {
     propagate_at_launch = true
   }
 }
-
-output "alb_dns" {
-  value = module.lb_1.load_balancer_dns
-  }
