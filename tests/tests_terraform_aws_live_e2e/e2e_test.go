@@ -2,24 +2,24 @@ package tests_terraform_aws_live_e2e
 
 import (
 	"fmt"
-    "os"
 	"github.com/gruntwork-io/terratest/modules/aws"
 	"github.com/gruntwork-io/terratest/modules/http-helper"
 	"github.com/gruntwork-io/terratest/modules/terraform"
+	"os"
 	"testing"
 	"time"
 )
 
-func TestLB(t *testing.T) {
+func TestE2E(t *testing.T) {
 
-stackEnv := os.Getenv("STACK_ENV")
-var terrDir string 
+	stackEnv := os.Getenv("STACK_ENV")
+	var terrDir string
 
-if stackEnv == "prod" {
-    terrDir = "../../../prod"
-} else {
-    terrDir = "../../../stage"
-}
+	if stackEnv == "prod" {
+		terrDir = "../../prod"
+	} else {
+		terrDir = "../../stage"
+	}
 
 	var defaultVPC = aws.GetDefaultVpc(
 		t,
