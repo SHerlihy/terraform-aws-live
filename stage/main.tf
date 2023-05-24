@@ -16,7 +16,7 @@ data "aws_subnets" "default" {
 module "initial_app" {
   source = "../composites/initial-app"
 
-  http_open       = 80
+  http_open       = 8080
   subnet_ids      = data.aws_subnets.default.ids
   instance_type   = "t2.micro"
 }

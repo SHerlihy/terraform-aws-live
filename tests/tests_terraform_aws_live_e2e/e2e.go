@@ -15,9 +15,9 @@ func TestE2E(t *testing.T) {
 	var terrDir string
 
 	if stackEnv == "prod" {
-		terrDir = "../../prod"
+		terrDir = "../prod"
 	} else {
-		terrDir = "../../stage"
+		terrDir = "../stage"
 	}
 
 	var defaultVPC = aws.GetDefaultVpc(
