@@ -10,6 +10,7 @@ require (
 	cloud.google.com/go/compute/metadata v0.2.1 // indirect
 	cloud.google.com/go/iam v0.7.0 // indirect
 	cloud.google.com/go/storage v1.27.0 // indirect
+	github.com/SHerlihy/terraform-aws-live/tests/tests_terraform_aws_live_e2e v0.0.0-20230524094111-b5c305734eb3 // indirect
 	github.com/SHerlihy/terraform-aws-live/tests/tests_terraform_aws_live_plan v0.0.0-20230523222103-64ab67b6dfd9 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect

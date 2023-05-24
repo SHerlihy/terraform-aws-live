@@ -188,6 +188,8 @@ dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
+github.com/SHerlihy/terraform-aws-live/tests/tests_terraform_aws_live_e2e v0.0.0-20230524094111-b5c305734eb3 h1:8ZzPaADjv9LRkHsg5bMh5MZgVsym0OHRpSwi1ZN3cBw=
+github.com/SHerlihy/terraform-aws-live/tests/tests_terraform_aws_live_e2e v0.0.0-20230524094111-b5c305734eb3/go.mod h1:EfWz5xrUH/5HLNI3A5L1JRkekYDYY1wUfiiYrwndD6k=
 github.com/SHerlihy/terraform-aws-live/tests/tests_terraform_aws_live_plan v0.0.0-20230523222103-64ab67b6dfd9 h1:zDbhAPVRshhdsXhYHgKyAMwqvsZ1HA/ZbloDLB6G5vk=
 github.com/SHerlihy/terraform-aws-live/tests/tests_terraform_aws_live_plan v0.0.0-20230523222103-64ab67b6dfd9/go.mod h1:kRASGMXmtgyEC/MkfkiMQF4zaOJU0mTSRWm4muA4Bp0=
 github.com/agext/levenshtein v1.2.1/go.mod h1:JEDfjyjHDjOF/1e4FlBE/PkbqA9OfWu2ki2W0IB5558=

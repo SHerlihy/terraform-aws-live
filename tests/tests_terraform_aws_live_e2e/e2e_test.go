@@ -11,7 +11,6 @@ import (
 )
 
 func TestE2E(t *testing.T) {
-
 	stackEnv := os.Getenv("STACK_ENV")
 	var terrDir string
 

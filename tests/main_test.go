@@ -15,8 +15,5 @@ func TestPlan(t *testing.T) {
 	} else {
 		pt.TestStagePlan(t)
 	}
-}
-
-func TestE2E(t *testing.T) {
 	e2e.TestE2E(t)
 }
